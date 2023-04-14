@@ -1,5 +1,7 @@
 /* Importing Different Modules */
 
+require('dotenv').config()
+
 const { globalVariables } = require("./config/config")
 const express = require("express")
 const mongoose = require("mongoose")
@@ -18,6 +20,7 @@ const apiAuthRoutes = require("./app/api/routes/auth.routes")
 mongoose
   .connect(mongoDbUrl, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then((response) => {
     console.log("MongoDB Connected Successfully.")
