@@ -2,14 +2,14 @@ version: "3.8"
 
 services:
   # Mongoose Services
-  mongo_db:
+  mongodb:
     container_name: tour_container
     image: mongo:latest
     restart: always
     ports: 
       - 27017:27017
     volumes: 
-      - mongo_db:/data/db
+      - data:/data/db
 
   
   # Node js API service 
@@ -18,11 +18,15 @@ services:
     ports:
       - 7000:3000
     environment:
-      DB: mongodb://mongo_db:27017/tour
+      # DB: mongodb://mongodb:27017/tour
       DB_NAME: tour
       NAME: TrulyMittal
-    depends_on: 
-      - mongo_db
+    # depends_on: 
+    #   - mongodb
+    volumes: 
+      - .:/tour
+    links:
+      - mongodb
 
 volumes: 
-  mongo_db:
+  data:
