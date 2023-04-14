@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  # Mongoose Services
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    ports: 
+      - 2717:27017
+    volumes: 
+      - mongo_db:/data/db
+
+  
+  # Node js API service 
+  api: 
+    build: .
+    ports:
+      - 7000:3000
+    environment:
+      DB: mongodb://mongo_db:27017/admin
+      POR: 3000
+      DB_NAME: admin
+      NAME: TrulyMittal
+    depends_on: 
+      - mongo_db
+
+volumes: 
+  mongo_db: {}
