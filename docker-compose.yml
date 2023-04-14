@@ -3,7 +3,7 @@ version: "3.8"
 services:
   # Mongoose Services
   mongodb:
-    container_name: tour_container
+    container_name: tour-poject_container
     image: mongo:latest
     restart: always
     ports: 
