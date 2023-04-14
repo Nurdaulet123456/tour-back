@@ -19,11 +19,10 @@ services:
       - 7000:3000
     environment:
       DB: mongodb://mongo_db:27017/tour
-      POR: 3000
       DB_NAME: tour
       NAME: TrulyMittal
     depends_on: 
       - mongo_db
 
 volumes: 
-  mongo_db: {}
+  mongo_db:
