@@ -3,7 +3,7 @@ version: "3.8"
 services:
   # Mongoose Services
   mongo_db:
-    container_name: db_container
+    container_name: tour_container
     image: mongo:latest
     restart: always
     ports: 
@@ -18,9 +18,9 @@ services:
     ports:
       - 7000:3000
     environment:
-      DB: mongodb://mongo_db:27017/admin
+      DB: mongodb://mongo_db:27017/tour
       POR: 3000
-      DB_NAME: admin
+      DB_NAME: tour
       NAME: TrulyMittal
     depends_on: 
       - mongo_db
