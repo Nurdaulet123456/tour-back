@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "referral",
   },
+  refParent: {
+    type: Array
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

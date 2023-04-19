@@ -38,24 +38,25 @@ const registerUser = async (req, res) => {
     req.body.password = await hashPassword(req.body.password)
     const user = new User(req.body)
 
-    //Checks if register link contains query "reflink"
     if (req.query.reflink) {
-      //Validate referral link and gets the referrer
+
       const referral = await referralService.checkReferer({
         referralId: req.query.reflink,
       })
-      // Saves the refId as the person that reffered
+
       user.refId = referral
+
+      user.refParent = referral
     }
 
     const savedUser = await user.save()
-    //Creates new referral for new user
+
     const newReferrer = new Referral({
       referralId: uuidv4(),
       referralLink: uuidv4(),
       userId: user._id,
     })
-    //save referral to the database and redirect to login
+
     await newReferrer.save()
     if (req.params.id) {
       console.log(req.params.id)
@@ -85,5 +86,7 @@ const loginUser = async (req, res) => {
     return generateResponse(res, 200, err.message)
   }
 }
+
+
 
 module.exports = { registerUser, loginUser }
