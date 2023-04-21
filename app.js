@@ -15,6 +15,7 @@ const app = express()
 const authRoutes = require("./app/routes/auth.routes")
 const profileRoutes = require("./app/routes/profile.routes")
 const apiAuthRoutes = require("./app/api/routes/auth.routes")
+const cors = require('cors')
 
 // Configure Mongoose to Connect to MongoDB
 mongoose
@@ -36,6 +37,7 @@ app.use(
     extended: true,
   })
 )
+app.use(cors())
 app.use(express.static(path.join(__dirname, "public")))
 
 /*  Flash and Session*/

@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
 
       user.refId = referral
 
-      user.refParent = referral
+      // user.refParent
     }
 
     const savedUser = await user.save()
