@@ -12,6 +12,7 @@ const { SECRET } = require("../../../../config/config")
 const jwt = require("jsonwebtoken")
 const referralService = require("../../../services/referral.service")
 const { v4: uuidv4 } = require("uuid")
+const { ObjectId } = require("mongoose")
 
 const validation = {
   register: registerValidation,
@@ -44,10 +45,9 @@ const registerUser = async (req, res) => {
         referralId: req.query.reflink,
       })
 
-      user.refId = referral
-
-      // user.refParent
+      user.parentId = referral
     }
+
 
     const savedUser = await user.save()
 

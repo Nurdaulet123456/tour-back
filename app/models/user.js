@@ -15,9 +15,8 @@ const UserSchema = new Schema({
     required: true,
     select: false,
   },
-  refId: {
+  parentId: {
     type: Schema.Types.ObjectId,
-    ref: "referral",
   },
   refParent: {
     type: Array
